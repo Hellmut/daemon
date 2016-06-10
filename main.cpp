@@ -3,6 +3,7 @@
 
 #include <config.hpp>
 #include <daemonizer.hpp>
+#include <outlet.hpp>
 
 Daemonizer daemon;
 
@@ -17,8 +18,11 @@ int main()
     cout<<"First daemon started."<<std::endl;
 #endif
     
-
-    
+Outlet::Instance(1);
+Outlet::Instance(2);
+Outlet::Instance(3);
+Outlet::Instance(4);
+Outlet::Instance(5);    
 #ifdef DEBUG
     cout<<"Daemon deinitialization skiped."<< std::endl;
 #else

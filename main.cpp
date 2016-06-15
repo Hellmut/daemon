@@ -1,11 +1,18 @@
 #include <iostream>
 #include <cstdlib>
+#include <unistd.h>
 
 #include <config.hpp>
 #include <daemonizer.hpp>
 #include <outlet.hpp>
 
-Daemonizer daemon;
+Daemonizer mdaemon;
+
+void * Outlet_Work(void * ptr){
+    unsigned int * nr = (unsigned int *)ptr;
+    cout<<"Thread "<< *nr << " message."<<std::endl;
+}
+
 
 int main()
 {
@@ -14,19 +21,22 @@ int main()
 #ifdef DEBUG
     cout<< "Damenon initialization skiped."<< std::endl;
 #else    
-    daemon.init_daemon();
+    mdaemon.init_daemon();
     cout<<"First daemon started."<<std::endl;
 #endif
-    
-Outlet::Instance(1);
-Outlet::Instance(2);
-Outlet::Instance(3);
-Outlet::Instance(4);
-Outlet::Instance(5);    
+
+for (unsigned int i=1; i<5 ;i++)    
+    Outlet::Create_Instance(i);
+
+sleep(50);
+
+for (unsigned int i=1; i<5 ;i++)    
+    Outlet::Delete_Instance(i);
+   
 #ifdef DEBUG
     cout<<"Daemon deinitialization skiped."<< std::endl;
 #else
-    daemon.deinit_daemon();
+    mdaemon.deinit_daemon();
     cout<<"First daemon terminated."<<std::endl;
 #endif
     deinit_output();

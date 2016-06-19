@@ -28,7 +28,7 @@ int main()
 for (unsigned int i=1; i<5 ;i++)    
     Outlet::Create_Instance(i);
 
-sleep(50);
+sleep(5);
 
 for (unsigned int i=1; i<5 ;i++)    
     Outlet::Delete_Instance(i);

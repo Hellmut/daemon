@@ -25,7 +25,7 @@ void Outlet::Delete_Instance(unsigned int nr){
     if (outlets_cur_nr > 0){
        delete pInstancet[outlets_cur_nr-1];
        outlets_cur_nr--;
-       cout << "Outlet instance nr. "<< outlets_cur_nr << " deleted"<<std::endl;
+       cout << "Outlet instance nr. "<< outlets_cur_nr + 1 << " deleted"<<std::endl;
     }
     else{
         cout << "Outlet instance deletion filed" <<std::endl;
@@ -33,7 +33,7 @@ void Outlet::Delete_Instance(unsigned int nr){
 }
 
 Outlet::Outlet(){
-     cout << "Outlet Constructor nr:"<< Outlet::outlets_cur_nr <<std::endl;
+     cout << "Outlet Constructor nr:"<< Outlet::outlets_cur_nr + 1 <<std::endl;
     number = Outlet::outlets_cur_nr + 1;
     pthread_create( &thread, NULL, Outlet_Work, (void *)&number);
 }
